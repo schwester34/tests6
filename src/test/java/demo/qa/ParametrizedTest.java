@@ -6,12 +6,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.*;
+
 
 public class ParametrizedTest {
      @BeforeAll
@@ -71,4 +76,20 @@ public class ParametrizedTest {
                 .shouldHave(text(curaddress));
 
     }
+    static Stream<Arguments> argumentsForThirdTest(){
+         return Stream.of(
+                 Arguments.of("12", "Please enter a valid email."),
+                 Arguments.of("@", "Please enter a valid email.")
+
+         );
+    }
+    @MethodSource(value = "argumentsForThirdTest")
+    @ParameterizedTest(name = "Проверка валидации почты")
+    void validationFullNameAndEmailTest (String login, String message){
+        $("#userEmail").setValue(login);
+        $("#submit").click();
+        //$("#output").shouldHave(text(message));
+        $$("#output").find(text(message)).shouldBe(visible);
+    }
+
 }
