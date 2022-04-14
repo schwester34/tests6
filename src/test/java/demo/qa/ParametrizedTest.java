@@ -78,8 +78,8 @@ public class ParametrizedTest {
     }
     static Stream<Arguments> argumentsForThirdTest(){
          return Stream.of(
-                 Arguments.of("12"),
-                 Arguments.of("@")
+                 Arguments.of("mari@rom.eu"),
+                 Arguments.of("dydos@gmail.com")
 
          );
     }
