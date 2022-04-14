@@ -85,7 +85,7 @@ public class ParametrizedTest {
     }
     @MethodSource(value = "argumentsForThirdTest")
     @ParameterizedTest(name = "Проверка валидации почты")
-    void validationFullNameAndEmailTest (String login, String message){
+    void validationEmailTest (String login){
         $("#userEmail").setValue(login);
         $("#submit").click();
         //$("#output").shouldHave(text(message));
