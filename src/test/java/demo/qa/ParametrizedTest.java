@@ -88,8 +88,7 @@ public class ParametrizedTest {
     void validationEmailTest (String login){
         $("#userEmail").setValue(login);
         $("#submit").click();
-        //$("#output").shouldHave(text(message));
-        //$$("#output").find(text(message)).shouldBe(visible);
+       
     }
 
 }
